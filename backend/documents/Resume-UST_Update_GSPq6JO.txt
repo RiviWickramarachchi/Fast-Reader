@@ -1,1 +1,0 @@
-I worked alongside a US based team, where I had to communicate with them and fix various system issues and bugs as well as create tools to automate various in-house tasks using selenium and python. I also got the opportunity to work with cloud based technologies such as AWS.
