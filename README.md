@@ -1,2 +1,2 @@
 # Fast-Reader
-An easy way to read your documents faster
+This web application, built with Python Django and React.js, is designed to improve reading efficiency. Users can upload Word documents or PDFs, and the app presents the content one word at a time, helping users read faster with improved focus and comprehension. By breaking down text into manageable chunks, the app supports speed reading techniques and makes it easier for users to process large amounts of information quickly and effectively.
