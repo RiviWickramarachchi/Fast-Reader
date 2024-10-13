@@ -9,6 +9,7 @@ from .models import Document
 from .serializer import DocumentSerializer
 import docx
 import pdfplumber
+import re
 
 class DocumentUploadView(APIView):
 
@@ -23,7 +24,6 @@ class DocumentUploadView(APIView):
         if file_serializer.is_valid():
 
              # Get the file from the request data (without saving it to the database)
-            
             file = request.data.get('file')
             common_methods = CommonMethods()
             content, isReadable = common_methods.process_file(file)
@@ -89,11 +89,26 @@ class CommonMethods():
         single_text_arr =[]
         with pdfplumber.open(file) as pdf:
             for page in pdf.pages:
-                #full_text += page.extract_text() + "\n"
-                full_text += page.extract_text()
-                formatted_text.extend(full_text.splitlines())
-            for element in formatted_text:
-                single_text_arr.extend(element.split())
+                page_text = page.extract_text()
+                if page_text:
+                    full_text += page_text
+
+            #Normalize the text to handle various whitespace issues
+            #Replace multiple spaces/newlines with a single space
+            full_text = re.sub(r'\s+', ' ', full_text)
+
+            # Split the normalized text into lines
+            formatted_text = full_text.split(". ")
+
+
+            # Split each sentence into words and add to word array
+            for sentence in formatted_text:
+                words = sentence.split(" ")
+                single_text_arr.extend(words)
+
+            print("Formatted Sentences Array")
+            print(formatted_text)
+            print("Word Array")
             print(single_text_arr)
         return single_text_arr
 
