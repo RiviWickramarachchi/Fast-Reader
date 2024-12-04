@@ -83,6 +83,22 @@ const Home = () => {
     }
   };
 
+  const deleteDocs = async(e) => {
+
+    try{
+        const response = await axios.delete(`http://127.0.0.1:8000/api/documents/`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        },
+    });
+    console.log(response);
+    toggle();
+    }
+    catch (error) {
+    }
+  }
+
   useEffect(() => {
     if (!isStarted) return; // If not started, return
 
@@ -123,7 +139,7 @@ const Home = () => {
             <textarea id="txtbx" type="text" name="textbx" rows="4" cols="50" value={currWord} readOnly></textarea>
             <div class="button-container">
               <button className="btn" onClick={showWords} >Read</button>
-              <button className="btn" onClick={toggle} >New Doc</button>
+              <button className="btn" onClick={deleteDocs} >New Doc</button>
             </div>
         </div>
       }

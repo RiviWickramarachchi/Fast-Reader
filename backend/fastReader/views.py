@@ -13,6 +13,7 @@ import re
 
 class DocumentUploadView(APIView):
 
+    #Currently this method is used for testing purposes only
     def get(self,request):
         queryset = Document.objects.all()  # Get all Document objects
         serializer = DocumentSerializer(queryset, many=True)  # Serialize the data
@@ -38,6 +39,14 @@ class DocumentUploadView(APIView):
         else:
             return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def delete(self, request):
+        documents = Document.objects.all()
+        if not documents.exists():
+            return Response({"error": "Document not found!"}, status=status.HTTP_404_NOT_FOUND)
+        else:
+            documents.delete()
+            return Response({"message": "All Documents deleted successfully!"}, status=status.HTTP_204_NO_CONTENT)
+
 
 class SingleDocumentView(APIView):
     def get(self, request, id, *args, **kwargs):
@@ -51,6 +60,7 @@ class SingleDocumentView(APIView):
             return Response( {"data": words} , status=status.HTTP_200_OK)
         except Document.DoesNotExist:
             return Response({"error": "Document not found"}, status=status.HTTP_404_NOT_FOUND)
+    #This method is currently not being used
     def delete(self, request, id=None, *args, **kwargs):
         try:
             document = Document.objects.get(pk=id)
