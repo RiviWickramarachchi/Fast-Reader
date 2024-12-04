@@ -12,6 +12,15 @@
     font-size: 20px;
 }
 
+/* Style for button container */
+.button-container {
+    display: flex;
+    gap: 15px; /* Space between buttons */
+    justify-content: center; /* Aligns buttons to the center */
+}
+
+
+
 input::file-selector-button {
     margin: 0px;
     padding: 15px 30px;
@@ -39,6 +48,11 @@ input[type=text], select {
     background-color: #bfc5bf; /* Darker green when hovering */
 }
 
+input::file-selector-button:hover {
+    background-color: #bfc5bf;
+}
+
+
 /* Style for form container */
 form {
     display: flex;
@@ -46,12 +60,7 @@ form {
     gap: 10px; /* Space between form elements */
 }
 
-/* Style for button container */
-button-container {
-    display: flex;
-    gap: 15px; /* Space between buttons */
-    justify-content: center; /* Aligns buttons to the center */
-}
+
 
 /* Style for textarea */
 textarea {
@@ -62,5 +71,5 @@ textarea {
     resize: vertical; /* Allows vertical resizing */
     text-align: center;
     height: 50px;
-    font-size: 20px;
+    font-size: 30px;
 }

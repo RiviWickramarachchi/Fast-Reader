@@ -29,6 +29,8 @@ const Home = () => {
     setBtnIsViewable((btnIsViewable) => !btnIsViewable);
   };
 
+  //Write Function To handle old document Here.....
+
   // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -74,6 +76,7 @@ const Home = () => {
 
         //start displaying words
         setWordList(response.data.data);
+        setCurrentWordIndex(0);
         setIsStarted(true);
     }
     catch (error) {
@@ -118,8 +121,10 @@ const Home = () => {
         <div>
             <h3> <b>Text Area</b> </h3>
             <textarea id="txtbx" type="text" name="textbx" rows="4" cols="50" value={currWord} readOnly></textarea>
-            <button className="btn" onClick={showWords} >Read</button>
-            <button className="btn" onClick={toggle} >New Doc</button>
+            <div class="button-container">
+              <button className="btn" onClick={showWords} >Read</button>
+              <button className="btn" onClick={toggle} >New Doc</button>
+            </div>
         </div>
       }
     </div>
